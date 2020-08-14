@@ -1,0 +1,6 @@
+autopep8==1.5.3
+Flask==1.1.2
+pylint==2.5.3
+pytest==5.4.3
+Flask-SQLAlchemy==2.4.4
+Flask-Migrate
