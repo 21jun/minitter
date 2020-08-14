@@ -1,12 +1,17 @@
 import pytest
-from app import app as flask_app
+from project import create_app
+from project.models import db
 
 
-@pytest.fixture
+@pytest.fixture(scope='session')
 def app():
-    yield flask_app
+    app = create_app('test')
+    with app.app_context():
+        db.create_all()
+        yield app
+        db.drop_all()
 
 
-@pytest.fixture
+@pytest.fixture(scope='session')
 def client(app):
     return app.test_client()

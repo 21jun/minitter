@@ -3,7 +3,7 @@ import json
 
 def test_sign_up_success(app, client):
     payload = {
-        "name": "Lee",
+        "name": "TEST",
         "password": "111",
         "profile": "Hi There!"
     }
@@ -11,14 +11,14 @@ def test_sign_up_success(app, client):
                       content_type='application/json')
     data = res.get_json()['data']
 
-    assert str(data['name']) == "Lee"
+    assert str(data['name']) == "TEST"
 
 
 def test_sign_up_fail(app, client):
 
     # No password passed
     payload = {
-        "name": "Lee",
+        "name": "TEST",
         "profile": "Hi There!"
     }
     res = client.post('/auth/sign-up', data=json.dumps(payload),

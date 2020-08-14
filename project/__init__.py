@@ -2,11 +2,11 @@ from flask import Flask
 from config import config_by_name
 
 
-def creat_app():
+def create_app(env='dev'):
     app = Flask(__name__)
 
     # Configure
-    app.config.from_object(config_by_name["dev"])
+    app.config.from_object(config_by_name[env])
 
     # BluePrints
     from . import models, routes

@@ -11,7 +11,7 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///{}'.format(
-        os.path.join(BASE_DIR, 'db/test.db'))
+        os.path.join(BASE_DIR, 'db/dev.db'))
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
@@ -19,7 +19,15 @@ class ProductionConfig(Config):
     DEBUG = False
 
 
+class TestConfig(Config):
+    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///{}'.format(
+        os.path.join(BASE_DIR, 'db/test.db'))
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+
 config_by_name = dict(
     dev=DevelopmentConfig,
-    prod=ProductionConfig
+    prod=ProductionConfig,
+    test=TestConfig
 )
