@@ -30,7 +30,9 @@ def new_tweet():
         return jsonify(response), 400
 
     if len(new_tweet['text']) > 300:
-        return "Limit tweet message upto 300 bytes", 400
+        response['success'] = False
+        response['msg'] = "Limit tweet message upto 300 bytes"
+        return jsonify(response), 400
 
     tweet = Tweet(**new_tweet)
 
