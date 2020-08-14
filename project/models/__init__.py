@@ -6,6 +6,6 @@ def init_app(app):
     print("INIT: DATABASE")
     db.init_app(app)
     # add new models here
-    # from . import users, posts
+    from . import users, posts, tweet
     migrate = Migrate()
     migrate.init_app(app, db)

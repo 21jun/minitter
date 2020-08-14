@@ -10,8 +10,14 @@ auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 def sign_up():
 
     new_user = request.get_json()
-    print(new_user)
 
+    response = {
+        'success': True,
+        'data': None,
+        'msg': ""
+    }
+
+    # TODO: hash password
     new_user = {
         "hashed_password": new_user.get("password", None),
         "name": new_user.get("name", "default_user_name"),
@@ -20,10 +26,15 @@ def sign_up():
         "created_at": datetime.now()
     }
 
-    # TODO: hash password
+    if any(value == None for value in new_user.values()):
+        response['success'] = False
+        response['msg'] = "There are missing values in sing-up form"
+        return jsonify(response), 400
+
     user = User(**new_user)
 
     db.session.add(user)
     db.session.commit()
 
-    return jsonify(new_user)
+    response['data'] = new_user
+    return jsonify(response), 200
