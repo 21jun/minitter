@@ -1,8 +1,8 @@
 version: '3'
 services:
   flask:
-      container_name: flask-base
-      image: "21jun/flask-base"
+      container_name: minitter
+      image: "21jun/minitter"
       ports:
        - "5000:5000"
       networks:
