@@ -8,7 +8,7 @@ services:
       networks:
       - backend
   nginx:
-      container_name: flask-nginx
+      container_name: minitter-nginx
       image: "21jun/flask-base-nginx"
       ports:
        - "80:80"
