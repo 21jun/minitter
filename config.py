@@ -6,6 +6,7 @@ BASE_DIR = os.path.dirname(__file__)
 class Config:
     PORT = 5000
     HOST = "0.0.0.0"
+    JWT_SECRET_KEY = "1234"
 
 
 class DevelopmentConfig(Config):

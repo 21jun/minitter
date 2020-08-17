@@ -8,7 +8,7 @@ def create_app(env='dev'):
     # Configure
     app.config.from_object(config_by_name[env])
 
-    # BluePrints
+    # Factories
     from . import models, routes
     routes.init_app(app)
     models.init_app(app)

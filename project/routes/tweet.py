@@ -1,14 +1,17 @@
 import re
 from flask import Blueprint, jsonify, request
+from flask import g
 from project.models.tweet import Tweet
 from project.models.users import User
 from project.models import db
 from datetime import datetime
+from project.login.login import login_required
 
 tweet_bp = Blueprint('tweet', __name__, url_prefix='/tweet')
 
 
 @tweet_bp.route('/new', methods=['POST'])
+@login_required
 def new_tweet():
     payload = request.get_json()
 
@@ -20,7 +23,7 @@ def new_tweet():
 
     new_tweet = {
         'text': payload.get('text', None),
-        'user_id': payload.get('user_id', None),
+        'user_id': g.get('user_id', None),
         "created_at": datetime.now()
     }
 
