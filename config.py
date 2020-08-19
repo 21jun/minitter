@@ -11,8 +11,16 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///{}'.format(
-        os.path.join(BASE_DIR, 'db/dev.db'))
+
+    SQLITE_PATH = os.getenv('SQLITE_PATH', None)
+    if not SQLITE_PATH:
+        SQLALCHEMY_DATABASE_URI = 'sqlite:///' + SQLITE_PATH
+    else:
+        SQLALCHEMY_DATABASE_URI = 'sqlite:///{}'.format(
+            os.path.join(BASE_DIR, 'db/dev.db'))
+    # uwsgi 로 실행할때 절대 경로로 줘야함 (////)
+    # Docker 로 Nginx 실행할때 아래 코드 사용
+    # SQLALCHEMY_DATABASE_URI = 'sqlite:////www/db/dev.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
