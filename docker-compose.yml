@@ -8,7 +8,9 @@ services:
       networks:
        - backend
       environment: 
-       - SQLITE_PATH=/www/db/dev.db
+       - SQLITE_PATH=/db/dev.db
+      volumes: 
+       - ./db:/db
   nginx:
       container_name: minitter-nginx
       image: "21jun/minitter-nginx"
