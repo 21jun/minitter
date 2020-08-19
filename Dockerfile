@@ -12,5 +12,6 @@ RUN pip3 install uwsgi
 # RUN apt-get -y update
 # RUN apt-get -y upgrade
 # RUN apt-get install -y sqlite3 libsqlite3-dev
-
+RUN mkdir /var/log/uwsgi
+RUN echo > /var/log/uwsgi/uwsgi.log
 CMD uwsgi uwsgi.ini
