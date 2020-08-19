@@ -23,6 +23,8 @@ class DevelopmentConfig(Config):
     # SQLALCHEMY_DATABASE_URI = 'sqlite:////www/db/dev.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    print(SQLALCHEMY_DATABASE_URI)
+
 
 class ProductionConfig(Config):
     DEBUG = False
