@@ -6,7 +6,9 @@ services:
       ports:
        - "5000:5000"
       networks:
-      - backend
+       - backend
+      environment: 
+       - SQLITE_PATH=/www/db/dev.db
   nginx:
       container_name: minitter-nginx
       image: "21jun/minitter-nginx"
