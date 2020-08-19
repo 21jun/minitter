@@ -13,7 +13,7 @@ class DevelopmentConfig(Config):
     DEBUG = True
 
     SQLITE_PATH = os.getenv('SQLITE_PATH', None)
-    if not SQLITE_PATH:
+    if SQLITE_PATH:
         SQLALCHEMY_DATABASE_URI = 'sqlite:///' + SQLITE_PATH
     else:
         SQLALCHEMY_DATABASE_URI = 'sqlite:///{}'.format(
@@ -23,7 +23,9 @@ class DevelopmentConfig(Config):
     # SQLALCHEMY_DATABASE_URI = 'sqlite:////www/db/dev.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    print("====================CONFIG====================")
     print(SQLALCHEMY_DATABASE_URI)
+    print("==============================================")
 
 
 class ProductionConfig(Config):
